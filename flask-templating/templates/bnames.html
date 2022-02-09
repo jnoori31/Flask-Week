@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+{% for user in ["ben", "harry", "bob", "jay", "matt", "bill"] if user.startswith('b') %}
+ <p>{{user}}</p>
+{% endfor %}
+<p>The above start with the letter B</p>
+{% endblock body %}

@@ -13,5 +13,10 @@ def harry():
     return render_template('harry.html')
 
 
+@app.route('/bnames')
+def bnames():
+    return render_template('bnames.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
