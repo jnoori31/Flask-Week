@@ -39,8 +39,8 @@ def article_delete(id):
     db.session.commit()
 
 
-app.route('/complete/<id>') 
-def complete(id):   
+app.route('/complete/<id>')
+def complete(id):
     todo = Todos.query.filter_by(id=int(id)).first()
     todo.complete = True
     db.session.commit()
