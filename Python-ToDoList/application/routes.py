@@ -1,20 +1,21 @@
 from application import app, db
 from application.models import Todos
-# render_templates, request
+from flask import render_template
 
-
+@app.route('/', methods=['Get'])
 @app.route('/index', methods=['GET'])
 def index():
    # all_todos= Todos.query.all()
- incomplete = Todos.query.filter_by(state=False).all()
- complete = Todos.query.filter_by(state=True).all()
- return render_templates('index.html')
+    incomplete = Todos.query.filter_by(state=False).all()
+    complete = Todos.query.filter_by(state=True).all()
+    number_of_todos = Todos.query.count()
+    return render_template('index.html')
 
 
 @app.route('/get/<id>/', methods=['GET'])
 def post_details(id):
     task = Todos.query.get(id)
-    return article_schema.jsonify(article)
+    return
 
 
 @app.route('/add', methods=['POST'])
@@ -39,8 +40,17 @@ def article_delete(id):
     db.session.commit()
 
 
-app.route('/complete/<id>')
+@app.route('/complete/<id>')
 def complete(id):
     todo = Todos.query.filter_by(id=int(id)).first()
     todo.complete = True
     db.session.commit()
+    return "You have completed this task"
+
+
+@app.route('/incomplete/<id>')
+def incomplete(id):
+    todo = Todos.query.filter_by(id=int(id)).first()
+    todo.complete = True
+    db.session.commit()
+    return "You have not completed this task"
