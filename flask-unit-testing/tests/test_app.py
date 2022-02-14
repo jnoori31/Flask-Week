@@ -40,3 +40,11 @@ class TestViews(TestBase):
         response = self.client.get(url_for('home'))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'MsWoman', response.data)
+
+class TestPost(TestBase):
+    def test_home_post(self):
+        response = self.client.post(url_for('home'))
+        data =dict(name="Test Person"),
+        follow_redirects=True
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Test Person', response.data)
